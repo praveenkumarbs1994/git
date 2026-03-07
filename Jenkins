@@ -12,7 +12,7 @@
         }
         stage("dev"){
              when{
-                changeset "tt"
+                changeset "myfile"
             }
             steps{
                 sh("free")

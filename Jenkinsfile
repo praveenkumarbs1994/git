@@ -1,30 +1,65 @@
 pipeline{
     agent any
     stages{
-        stage("test"){
+        stage("pre"){
+            when{
+                changeset "praveen.yaml"
+            }
             steps{
-                sh ("uname")
-                echo "stage is sucess"
+                sh("sudo yum install python3-pip* -y")
+                echo "requirement 1 pip3 is installed"
             }
         }
-        stage("dev"){
+        stage("pre2"){
+            when{
+                changeset "praveen.yaml"
+            }
             steps{
-                sh("free")
-                sh("df -h")
-                echo "stage2 is sucess"
+                sh ("pip --version")
+                echo "prerequest pip is installed"
+            }
+        }
+        stage("pre3"){
+            when{
+                changeset "praveen.yaml"
+                
+            }
+            steps{
+                sh("sudo pip3 install ansible")
+                echo "Ansible is sinatlled"
+            }
+        }
+        stage("pre4"){
+            when{
+                changeset "praveen.yaml"
+            }
+            steps{
+                sh("sudo ansible --version")
+                echo "confirmed ansible ready"
+            }
+        }
+        stage("copying index"){
+            when{
+                changeset "praveen.yaml"
+            }
+            steps{
+                sh ("sudo cp /tmp/index.html /var/www/html")
+            }
+        }
+        stage("copyig the yaml file"){
+            when{
+                changeset "praveen.yaml"
+            }
+            steps{
+                sh ("sudo cp $WORKSPACE/praveen.yaml /tmp")
+            }
+        }
+        stage ("Running playbook"){
+            when{
+                changeset "praveen.yaml"
+            }
+            steps{
+                sh ("sudo ansible-playbook /tmp/praveen.yaml")
             }
         }
     }
-    post{
-        always{
-            echo "Need to Build $BUILD_NUMBER IS SUCCESS OR NOT"
-        }
-        failure{
-            echo "Build $BUILD_NUMBER is failed"
-        }
-        success{
-            echo "Build $BUILD_NUMBER IS SUCCESS"
-            sh("uname -r >/tmp/kern.txt")
-        }
-    }
-}

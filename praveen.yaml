@@ -3,7 +3,7 @@
    become: yes
    ignore_errors: yes
    tasks:
-     - name: installing thes httpdsssoooookkkkkiiiiiiiiikkkkkkkuuuppsspppss
+     - name: installing thes httpdsssoooookkkkkiiiiiiiiikkkkkkkuuuppsspppssss
        yum:
         name: httpd
         state: present

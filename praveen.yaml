@@ -2,8 +2,8 @@
  - hosts: localhost
    become: yes
    ignore_errors: yes
-   tasks:fff
-     - name: installing thes httpdsssoooookkkkkiiiiiiiiikkkkkkkuuuppsspppssssddddd
+   tasks:
+     - name: installing thes httpdsssoooookkkkkiiiiiiiiikkkkkkkuuuppsspppssssdddddddd
        yum:
         name: httpd
         state: present
